@@ -1,10 +1,8 @@
 package com.codechallenge.roles.web.clients;
 
-import com.codechallenge.roles.data.models.Team;
 import com.codechallenge.roles.data.models.User;
-import com.codechallenge.roles.web.DTO.TeamsDTO;
 import com.codechallenge.roles.web.DTO.UsersDTO;
-import com.codechallenge.roles.web.interfaces.UsersClientInterface;
+import com.codechallenge.roles.web.clients.interfaces.UsersClientInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

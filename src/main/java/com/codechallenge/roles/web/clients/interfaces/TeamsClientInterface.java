@@ -1,4 +1,4 @@
-package com.codechallenge.roles.web.interfaces;
+package com.codechallenge.roles.web.clients.interfaces;
 
 import com.codechallenge.roles.data.models.Team;
 import com.codechallenge.roles.web.DTO.TeamsDTO;

@@ -1,15 +1,14 @@
 package com.codechallenge.roles.web.clients;
 
-
 import com.codechallenge.roles.data.models.Team;
 import com.codechallenge.roles.web.DTO.TeamsDTO;
-import com.codechallenge.roles.web.interfaces.TeamsClientInterface;
-import lombok.RequiredArgsConstructor;
+import com.codechallenge.roles.web.clients.interfaces.TeamsClientInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.UUID;
 
