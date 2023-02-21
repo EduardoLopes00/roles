@@ -14,14 +14,14 @@ public class RoleService implements RoleServiceInterface {
     @Autowired
     RoleRepository roleRepository;
 
-    public Role createRole(RoleDTO role) {
-        Role foundRole = roleRepository.findFirstByNameIgnoreCase(role.getName());
+    public Role createRole(RoleDTO roleDTO) {
+        Role foundRole = roleRepository.findFirstByNameIgnoreCase(roleDTO.getName());
 
         if (foundRole != null) {
-            throw new AlreadyExistsException(role.getName());
+            throw new AlreadyExistsException(roleDTO.getName());
         }
 
-        Role newRole = roleRepository.save(role.toModel());
+        Role newRole = roleRepository.save(roleDTO.toModel());
 
         return newRole;
     }

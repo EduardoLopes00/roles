@@ -5,6 +5,6 @@ import com.codechallenge.roles.web.DTO.RoleDTO;
 import org.springframework.http.ResponseEntity;
 
 public interface RoleControllerInterface {
-    public ResponseEntity<Role> createRole(RoleDTO role);
+    public ResponseEntity<Role> createRole(RoleDTO roleDTO);
 
 }

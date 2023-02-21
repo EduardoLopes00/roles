@@ -19,8 +19,8 @@ public class RoleController implements RoleControllerInterface {
     RoleService roleService;
 
     @PostMapping
-    public ResponseEntity<Role> createRole(@RequestBody RoleDTO role) {
-        Role newRole = roleService.createRole(role);
+    public ResponseEntity<Role> createRole(@RequestBody RoleDTO roleDTO) {
+        Role newRole = roleService.createRole(roleDTO);
 
         return ResponseEntity.ok(newRole);
     }
