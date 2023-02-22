@@ -27,5 +27,9 @@ public class Membership {
 
     @Column(name = "team_id", nullable = false)
     private UUID teamId;
+
+    public boolean hasTheSameRole(UUID roleId) {
+        return this.role != null && this.role.getId() == roleId;
+    }
 }
 
