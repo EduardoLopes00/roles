@@ -48,7 +48,7 @@ public class RoleService implements RoleServiceInterface {
     }
 
     public void deleteRole(UUID roleId) {
-        roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException(roleId.toString()));
+        Role role = roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException(roleId.toString()));
 
         List<Membership> memberships = membershipRepository.findByRoleId(roleId);
 
@@ -57,6 +57,8 @@ public class RoleService implements RoleServiceInterface {
 
             throw new CannotDeleteException(roleId.toString(), errorMessage.toString());
         }
+
+        roleRepository.delete(role);
     }
 
     private StringBuilder buildCannotDeleteRoleMessage(List<Membership> memberships) {
