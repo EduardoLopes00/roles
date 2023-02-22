@@ -9,12 +9,11 @@ import com.codechallenge.roles.infra.exceptions.AlreadyExistsException;
 import com.codechallenge.roles.infra.exceptions.NotFoundException;
 import com.codechallenge.roles.services.interfaces.MembershipServiceInterface;
 import com.codechallenge.roles.web.DTO.MembershipDTO;
-import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Member;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -41,5 +40,11 @@ public class MembershipService implements MembershipServiceInterface {
         }
 
         return membershipRepository.saveAndFlush(membershipDTO.toModel(role));
+    }
+
+    public List<Membership> getMembershipsByRole(UUID roleId) {
+        List<Membership> membershipList = membershipRepository.findByRoleId(roleId).stream().toList();
+
+        return membershipList;
     }
 }

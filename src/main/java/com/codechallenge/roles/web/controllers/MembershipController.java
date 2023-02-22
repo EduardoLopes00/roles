@@ -7,9 +7,10 @@ import com.codechallenge.roles.web.controllers.interfaces.MembershipControllerIn
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("memberships")
@@ -23,5 +24,10 @@ public class MembershipController implements MembershipControllerInterface {
         Membership membership = membershipService.assignRole(membershipDTO);
 
         return ResponseEntity.ok(membership);
+    }
+
+    @GetMapping("/role/{roleId}")
+    public ResponseEntity<List<Membership>> getMembershipsByRole(@PathVariable UUID roleId) {
+        return ResponseEntity.ok().body(membershipService.getMembershipsByRole(roleId));
     }
 }
