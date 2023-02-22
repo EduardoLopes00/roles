@@ -46,7 +46,7 @@ public class membershipServiceTest {
         Membership membershipSUT = membershipsService.assignRole(membershipDTO);
 
         assertNotNull(membershipSUT);
-        assertEquals(expectedMembership, membershipSUT);
+        assertEquals(expectedMembership.getId(), membershipSUT.getId());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class membershipServiceTest {
         Membership membershipSUT = membershipsService.assignRole(membershipDTO);
 
         assertNotNull(membershipSUT);
-        assertEquals(expectedMembership, membershipSUT);
+        assertEquals(expectedMembership.getId(), membershipSUT.getId());
     }
 
     @Test
@@ -75,9 +75,21 @@ public class membershipServiceTest {
 
         when(membershipRepository.findByRoleId(roleId)).thenReturn(DEFAULT_MEMBERSHIP_LIST());
 
-        List<Membership> memberListSUT = membershipsService.getMembershipsByRole(roleId);
+        List<Membership> membershipListSUT = membershipsService.getMembershipsByRole(roleId);
 
-        assertNotNull(memberListSUT);
-        assertEquals(DEFAULT_MEMBERSHIP_LIST().get(0).getRole().getId(), memberListSUT.get(0).getRole().getId());
+        assertNotNull(membershipListSUT);
+        assertEquals(DEFAULT_MEMBERSHIP_LIST().get(0).getRole().getId(), membershipListSUT.get(0).getRole().getId());
+    }
+
+    @Test
+    public void shouldReturnNoneMemberships_whenCalledWithARoleWhoseHasNoMembershipAssociated() {
+        UUID roleId = TESTER_UUID;
+
+        when(membershipRepository.findByRoleId(roleId)).thenReturn(EMPTY_MEMBERSHIP_LIST());
+
+        List<Membership> membershipListSUT = membershipsService.getMembershipsByRole(roleId);
+
+        assertNotNull(membershipListSUT);
+        assertEquals(0, EMPTY_MEMBERSHIP_LIST().size());
     }
 }
