@@ -6,10 +6,9 @@ import com.codechallenge.roles.web.DTO.RoleDTO;
 import com.codechallenge.roles.web.controllers.interfaces.RoleControllerInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("roles")
@@ -22,6 +21,17 @@ public class RoleController implements RoleControllerInterface {
     public ResponseEntity<Role> createRole(@RequestBody RoleDTO roleDTO) {
         Role newRole = roleService.createRole(roleDTO);
 
-        return ResponseEntity.ok(newRole);
+        return ResponseEntity.status(201).body(newRole);
+    }
+
+    @GetMapping(path = "/search")
+    public ResponseEntity<Role> getRoleByUserIdAndTeamId(
+            @RequestParam UUID userId,
+            @RequestParam UUID teamId) {
+        Role role = roleService.getRoleByUserIdAndTeamId(userId, teamId);
+
+        return ResponseEntity
+                .status(200)
+                .body(role);
     }
 }
