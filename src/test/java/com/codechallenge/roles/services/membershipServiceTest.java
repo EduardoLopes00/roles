@@ -40,7 +40,7 @@ public class membershipServiceTest {
 
         when(membershipRepository.findFirstByTeamIdAndUserId(membershipDTO.getTeamId(), membershipDTO.getUserId())).thenReturn(null);
         when(membershipRepository
-                .saveAndFlush(expectedMembership))
+                .saveAndFlush(any(Membership.class)))
                 .thenReturn(expectedMembership);
 
         Membership membershipSUT = membershipsService.assignRole(membershipDTO);
@@ -60,7 +60,7 @@ public class membershipServiceTest {
 
         when(membershipRepository.findFirstByTeamIdAndUserId(membershipDTO.getTeamId(), membershipDTO.getUserId())).thenReturn(developerMembership);
         when(membershipRepository
-                .saveAndFlush(expectedMembership))
+                .saveAndFlush(any(Membership.class)))
                 .thenReturn(expectedMembership);
 
         Membership membershipSUT = membershipsService.assignRole(membershipDTO);
