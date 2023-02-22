@@ -1,6 +1,7 @@
 package com.codechallenge.roles.infra.configurations;
 
 import com.codechallenge.roles.infra.exceptions.AlreadyExistsException;
+import com.codechallenge.roles.infra.exceptions.CannotDeleteException;
 import com.codechallenge.roles.infra.exceptions.NotFoundException;
 import com.codechallenge.roles.web.DTO.ExceptionDTO;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,13 @@ public class RestExceptionHandler {
         );
     }
 
+    @ExceptionHandler(CannotDeleteException.class)
+    public ResponseEntity<ExceptionDTO> BadRequestException(CannotDeleteException e){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
+                new ExceptionDTO(HttpStatus.FORBIDDEN, e.getMessage())
+        );
+    }
+
     @ExceptionHandler(BadRequest.class)
     public ResponseEntity<ExceptionDTO> BadRequestException(BadRequest e){
 
@@ -35,4 +43,8 @@ public class RestExceptionHandler {
                 new ExceptionDTO(HttpStatus.BAD_REQUEST, e.getMessage())
         );
     }
+
+
+
+
 }
