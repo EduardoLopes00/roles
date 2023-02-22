@@ -47,6 +47,12 @@ public class MembershipMocks {
         return membershipsList;
     }
 
+    public static List<Membership> EMPTY_MEMBERSHIP_LIST() {
+        List<Membership> membershipsList = new ArrayList<>();
+        
+        return membershipsList;
+    }
+
 
 
 }
