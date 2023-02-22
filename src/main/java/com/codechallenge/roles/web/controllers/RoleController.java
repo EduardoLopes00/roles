@@ -34,4 +34,11 @@ public class RoleController implements RoleControllerInterface {
                 .status(200)
                 .body(role);
     }
+
+    @DeleteMapping(path = "/{roleId}")
+    public ResponseEntity<String> deleteRole(@PathVariable UUID roleId) {
+        roleService.deleteRole(roleId);
+
+        return ResponseEntity.ok().body("Role deleted successfully");
+    }
 }
